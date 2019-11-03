@@ -1,4 +1,5 @@
 # GameBoard.py
+
 import random
 import termcolor
 from Score import Score
@@ -7,7 +8,7 @@ sessionScore = Score(0)
 
 class GameBoard():
     boardColors = {
-        ' ‎': None,
+        '*': None,
         '2': 'red',
         '4': 'yellow',
         '8': 'green',
@@ -30,13 +31,13 @@ class GameBoard():
     def createGameBoard(self, size):
         assert size > 1, "Wrong number, must be: > 1"
         assert type(size) == int, "Argument must be an int type"
-        return [[" ‎" for x in range(size)] for x in range(size)]
+        return [["*" for x in range(size)] for x in range(size)]
 
     def drawGameBoard(self, gameBoard):
 
         verticalBorder = ""
         for i in range(len(gameBoard) + 2):
-            verticalBorder += "═\t"
+            verticalBorder += "-\t"
         print(verticalBorder)
         for y in range(len(gameBoard)):
             row = ""
@@ -48,7 +49,7 @@ class GameBoard():
                     row += x
                 row += "\t"
 
-            print("║\t" + row + "║")
+            print("|\t" + row + "|")
             if y is not len(gameBoard) - 1:
                 print("")
         print(verticalBorder)
@@ -81,7 +82,7 @@ class GameBoard():
             randomlyGeneratedNumberX = int(randomlyGeneratedNumberX)
             randomlyGeneratedNumberY = int(randomlyGeneratedNumberY)
 
-            foundPlace = self.getObject(randomlyGeneratedNumberX, randomlyGeneratedNumberY, gameBoard) == ' ‎'
+            foundPlace = self.getObject(randomlyGeneratedNumberX, randomlyGeneratedNumberY, gameBoard) == '*'
 
         self.setObject(digitToPlace, randomlyGeneratedNumberX, randomlyGeneratedNumberY, gameBoard)
 
@@ -94,7 +95,7 @@ class GameBoard():
 
         for row in gameBoard:
             for element in row:
-                if element == " ‎":
+                if element == "*":
                     return False
         return True
 
@@ -121,7 +122,7 @@ class GameBoard():
     def moveElement(cls, xCoordinate, yCoordinate, directionToSwipe, gameBoard):
         objectAtXY = cls.getObject(xCoordinate, yCoordinate, gameBoard)
 
-        assert objectAtXY != " ‎", "Error in logic"
+        assert objectAtXY != "*", "Error in logic"
 
         validSwipeDirection = (directionToSwipe == "UP" or
                                directionToSwipe == "DOWN" or
@@ -156,16 +157,16 @@ class GameBoard():
 
         if adjacentObject[0] == None: # edge of the board
             return False
-        elif objectAtXY != adjacentObject[0] and adjacentObject[0] != " ‎": # cant combine 2 numbers
+        elif objectAtXY != adjacentObject[0] and adjacentObject[0] != "*": # cant combine 2 numbers
             return False
 
-        elif adjacentObject[0] == " ‎":
-            cls.setObject(" ‎", xCoordinate, yCoordinate, gameBoard)
+        elif adjacentObject[0] == "*":
+            cls.setObject("*", xCoordinate, yCoordinate, gameBoard)
             cls.setObject(objectAtXY, adjacentObject[1], adjacentObject[2], gameBoard)
             cls.moveElement(adjacentObject[1], adjacentObject[2], directionToSwipe, gameBoard)
             return True
         elif objectAtXY == adjacentObject[0]:
-            cls.setObject(" ‎", xCoordinate, yCoordinate, gameBoard)
+            cls.setObject("*", xCoordinate, yCoordinate, gameBoard)
             cls.setObject(str(int(adjacentObject[0]) * 2), adjacentObject[1], adjacentObject[2], gameBoard)
             cls.moveElement(adjacentObject[1], adjacentObject[2], directionToSwipe, gameBoard)
 
@@ -184,7 +185,7 @@ class GameBoard():
 
         if objectAtXY == None:
             return False
-        elif objectAtXY == " ‎":
+        elif objectAtXY == "*":
             return True
 
         return (
@@ -193,15 +194,3 @@ class GameBoard():
                 objectAtXY == cls.getObject(xCoordinate - 1, yCoordinate, gameBoard) or
                 objectAtXY == cls.getObject(xCoordinate + 1, yCoordinate, gameBoard)
         )
-
-
-
-
-
-
-
-
-
-
-
-
