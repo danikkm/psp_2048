@@ -1,4 +1,5 @@
 # Movement.py
+
 import time
 import SystemHelper as sh
 from GameBoard import GameBoard
@@ -21,7 +22,7 @@ def movementSwipeUp(gameBoard):
             objectAtXY = GameBoard.getObject(x, y, gameBoard)
             elementAbove = GameBoard.getObject(x, y - 1, gameBoard)
 
-            if objectAtXY == " ‎":
+            if objectAtXY == "*":
                 continue
 
             elif elementAbove == None:
@@ -47,7 +48,7 @@ def movementSwipeDown(gameBoard):
             objectAtXY = GameBoard.getObject(x, y, gameBoard)
             elementBelow = GameBoard.getObject(x, y + 1, gameBoard)
 
-            if objectAtXY == " ‎":
+            if objectAtXY == "*":
                 continue
             elif elementBelow == None:
                 continue
@@ -68,7 +69,7 @@ def movementSwipeLeft(gameBoard):
             objectAtXY = GameBoard.getObject(x, y, gameBoard)
             elementOnTheLeft = GameBoard.getObject(x - 1, y, gameBoard)
 
-            if objectAtXY == " ‎":
+            if objectAtXY == "*":
                 continue
             elif elementOnTheLeft == None:
                 continue
@@ -92,7 +93,7 @@ def movementSwipeRight(gameBoard):
             objectAtXY = GameBoard.getObject(x, y, gameBoard)
             elementOnTheRight = GameBoard.getObject(x + 1, y, gameBoard)
 
-            if objectAtXY == " ‎":
+            if objectAtXY == "*":
                 continue
             elif elementOnTheRight == None:
                 continue
@@ -118,4 +119,3 @@ def gameOver(gameBoard):
 
 def getPressedKey():
     return ord(getch())
-
