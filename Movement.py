@@ -1,121 +1,121 @@
 # Movement.py
 
 import time
-import SystemHelper as sh
+from SystemHelper import SystemHelper
 from GameBoard import GameBoard
 from getch import getch
 
 
-def swipeCurrentElement(object):
-    sh.flushScreen()
-    GameBoard.drawGameBoard(GameBoard,object)
-    time.sleep(.3)
-    GameBoard.placeRandomElement(GameBoard, object)
-    sh.flushScreen()
-    GameBoard.drawGameBoard(GameBoard, object)
+class Movement(GameBoard):
 
-def movementSwipeUp(gameBoard):
-    swiped = False
-
-    for y in range(len(gameBoard)):
-        for x in range(len(gameBoard)):
-            objectAtXY = GameBoard.getObject(x, y, gameBoard)
-            elementAbove = GameBoard.getObject(x, y - 1, gameBoard)
-
-            if objectAtXY == "*":
-                continue
-
-            elif elementAbove == None:
-                continue
-
-            swiped = GameBoard.moveElement(x, y, "UP", gameBoard) or swiped
-
-    if swiped:
-        swipeCurrentElement(gameBoard)
-    else:
-        sh.flushScreen()
-        GameBoard.drawGameBoard(GameBoard,gameBoard)
+    @classmethod
+    def swipe_current_element(cls, game_board):
+        SystemHelper.flush_screen()
+        game_board.draw_game_board()
         time.sleep(.3)
+        game_board.place_random_element()
+        SystemHelper.flush_screen()
+        game_board.draw_game_board()
 
+    def movement_swipe_up(self):
+        swiped = False
+        for y in range(self.matrix_length):
+            for x in range(self.matrix_length):
+                object_at_xy = self.get_object(x, y)
+                element_above = self.get_object(x, y - 1)
 
-def movementSwipeDown(gameBoard):
-    swiped = False
+                if object_at_xy == "*":
+                    continue
 
-    for y in range(len(gameBoard)):
-        y = len(gameBoard) - 1 - y
+                elif element_above is None:
+                    continue
 
-        for x in range(len(gameBoard)):
-            objectAtXY = GameBoard.getObject(x, y, gameBoard)
-            elementBelow = GameBoard.getObject(x, y + 1, gameBoard)
+                swiped = self.move_element(x, y, "UP") or swiped
 
-            if objectAtXY == "*":
-                continue
-            elif elementBelow == None:
-                continue
+        if swiped:
+            Movement.swipe_current_element(self)
+        else:
+            SystemHelper.flush_screen()
+            self.draw_game_board()
+            time.sleep(.3)
 
-            swiped = GameBoard.moveElement(x, y, "DOWN", gameBoard) or swiped
-    if swiped:
-        swipeCurrentElement(gameBoard)
-    else:
-        sh.flushScreen()
-        GameBoard.drawGameBoard(GameBoard,gameBoard)
-        time.sleep(.3)
+    def movement_swipe_down(self):
+        swiped = False
 
-def movementSwipeLeft(gameBoard):
-    swiped = False
+        for y in range(self.matrix_length):
+            y = self.matrix_length - 1 - y
 
-    for y in range(len(gameBoard)):
-        for x in range(len(gameBoard)):
-            objectAtXY = GameBoard.getObject(x, y, gameBoard)
-            elementOnTheLeft = GameBoard.getObject(x - 1, y, gameBoard)
+            for x in range(self.matrix_length):
+                object_at_xy = self.get_object(x, y)
+                element_below = self.get_object(x, y + 1)
 
-            if objectAtXY == "*":
-                continue
-            elif elementOnTheLeft == None:
-                continue
+                if object_at_xy == "*":
+                    continue
+                elif element_below is None:
+                    continue
 
-            swiped = GameBoard.moveElement(x, y, "LEFT", gameBoard) or swiped
+                swiped = self.move_element(x, y, "DOWN") or swiped
+        if swiped:
+            Movement.swipe_current_element(self)
+        else:
+            SystemHelper.flush_screen()
+            self.draw_game_board()
+            time.sleep(.3)
 
-    if swiped:
-        swipeCurrentElement(gameBoard)
-    else:
-        sh.flushScreen()
-        GameBoard.drawGameBoard(GameBoard,gameBoard)
-        time.sleep(.3)
+    def movement_swipe_left(self):
+        swiped = False
 
-def movementSwipeRight(gameBoard):
-    swiped = False
+        for y in range(self.matrix_length):
+            for x in range(self.matrix_length):
+                object_at_xy = self.get_object(x, y)
+                element_on_the_left = self.get_object(x - 1, y)
 
-    for y in range(len(gameBoard)):
-        for x in range(len(gameBoard)):
-            x = len(gameBoard) - 1 - x
+                if object_at_xy == "*":
+                    continue
+                elif element_on_the_left is None:
+                    continue
 
-            objectAtXY = GameBoard.getObject(x, y, gameBoard)
-            elementOnTheRight = GameBoard.getObject(x + 1, y, gameBoard)
+                swiped = self.move_element(x, y, "LEFT") or swiped
 
-            if objectAtXY == "*":
-                continue
-            elif elementOnTheRight == None:
-                continue
+        if swiped:
+            Movement.swipe_current_element(self)
+        else:
+            SystemHelper.flush_screen()
+            self.draw_game_board()
+            time.sleep(.3)
 
-            swiped = GameBoard.moveElement(x, y, "RIGHT", gameBoard) or swiped
+    def movement_swipe_right(self):
+        swiped = False
 
+        for y in range(self.matrix_length):
+            for x in range(self.matrix_length):
+                x = self.matrix_length - 1 - x
 
-    if swiped:
-        swipeCurrentElement(gameBoard)
-    else:
-        sh.flushScreen()
-        GameBoard.drawGameBoard(GameBoard,gameBoard)
-        time.sleep(.3)
+                object_at_xy = self.get_object(x, y)
+                element_on_the_right = self.get_object(x + 1, y)
 
+                if object_at_xy == "*":
+                    continue
+                elif element_on_the_right is None:
+                    continue
 
+                swiped = self.move_element(x, y, "RIGHT") or swiped
 
-def gameOver(gameBoard):
-    for y in range(len(gameBoard)):
-        for x in range(len(gameBoard)):
-            if GameBoard.isItPossibleToSwipe(x, y, gameBoard):
-                return False
-    return True
+        if swiped:
+            Movement.swipe_current_element(self)
+        else:
+            SystemHelper.flush_screen()
+            self.draw_game_board()
+            time.sleep(.3)
 
-def getPressedKey():
-    return ord(getch())
+    def game_over(self):
+        for y in range(self.matrix_length):
+            for x in range(self.matrix_length):
+                if self.is_it_possible_to_swipe(x, y):
+                    return False
+        return True
+
+    # todo: fix getch catches length 0
+    @staticmethod
+    def get_pressed_key():
+        return ord(getch())
