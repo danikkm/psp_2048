@@ -2,7 +2,6 @@
 
 
 class Score:
-
     __score = None
 
     def __init__(self, score):

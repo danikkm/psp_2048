@@ -1,9 +1,11 @@
 # Movement.py
 
 import time
-from SystemHelper import SystemHelper
-from GameBoard import GameBoard
+
 from getch import getch
+
+from GameBoard import GameBoard
+from SystemHelper import SystemHelper
 
 
 class Movement(GameBoard):

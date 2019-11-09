@@ -1,7 +1,9 @@
 # GameBoard.py
 
 import random
+
 import termcolor
+
 from Score import Score
 
 
@@ -40,7 +42,7 @@ class GameBoard:
             '1024': 'blue',
             '2048': 'red'
         }
-    
+
     def _get_board_len(self):
         return len(self.board_matrix)
 
@@ -81,7 +83,6 @@ class GameBoard:
             digit_to_place = "8"
         found_place = False
         while not found_place:
-
             self.randomly_generated_number_x = self.get_random_number(self.matrix_length)
             self.randomly_generated_number_y = self.get_random_number(self.matrix_length)
 

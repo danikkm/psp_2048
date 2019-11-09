@@ -2,10 +2,11 @@
 
 
 import time
+
 from GameBoard import GameBoard
+from Movement import Movement
 from Score import Score
 from SystemHelper import SystemHelper
-from Movement import Movement
 
 
 def main():
