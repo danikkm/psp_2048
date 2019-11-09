@@ -1,78 +1,70 @@
 # Main.py
+
+
+import time
 from GameBoard import GameBoard
 from Score import Score
-import SystemHelper as sh
-import Movement as mv
+from SystemHelper import SystemHelper
+from Movement import Movement
+
 
 def main():
+    board = GameBoard(4)
 
-    Board = GameBoard()
-
-    newBoardMatrix = Board.createGameBoard(4)
-
-    Board.placeRandomElement(newBoardMatrix)
+    board.place_random_element()
 
     print("Controls: capital/non-capital WSAD letter or arrows")
     print("To exit the game press: q")
-    Board.drawGameBoard(newBoardMatrix)
 
-    keyStrokes = {
-        "W": 87,
-        "S": 83,
-        "A": 65,
-        "D": 68,
-        "w": 119,
-        "s": 115,
-        "a": 97,
-        "d": 100,
-        "q": 113,
-        "upArrow": 65,
-        "downArrow": 66,
-        "leftArrow": 68,
-        "rightArrow": 67
-    }
+    board.draw_game_board()
 
-    print("Your current score is: ", Score.getScore())
+    key_strokes = SystemHelper.get_key_strokes()
+
+    print("Your current score is: ", Score.get_score())
 
     while True:
-        pressedKey = mv.getPressedKey()
+        pressed_key = Movement.get_pressed_key()
 
-        if pressedKey == list(keyStrokes.values())[0] or \
-                pressedKey == list(keyStrokes.values())[4] or \
-                pressedKey == list(keyStrokes.values())[9]:
-            mv.movementSwipeUp(newBoardMatrix)
-            print("Your current score is: ", Score.getScore())
-        elif pressedKey == list(keyStrokes.values())[1] or \
-                pressedKey == list(keyStrokes.values())[5] or \
-                pressedKey == list(keyStrokes.values())[10]:
-            mv.movementSwipeDown(newBoardMatrix)
-            print("Your current score is: ", Score.getScore())
-        elif pressedKey == list(keyStrokes.values())[2] or \
-                pressedKey == list(keyStrokes.values())[6] or \
-                pressedKey == list(keyStrokes.values())[11]:
-            mv.movementSwipeLeft(newBoardMatrix)
-            print("Your current score is: ", Score.getScore())
-        elif pressedKey == list(keyStrokes.values())[3] or \
-                pressedKey == list(keyStrokes.values())[7] or \
-                pressedKey == list(keyStrokes.values())[12]:
-            mv.movementSwipeRight(newBoardMatrix)
-            print("Your current score is: ", Score.getScore())
-        elif pressedKey == list(keyStrokes.values())[8]:
+        if pressed_key == list(key_strokes.values())[0] or \
+                pressed_key == list(key_strokes.values())[4] or \
+                pressed_key == list(key_strokes.values())[9]:
+            Movement.movement_swipe_up(board)
+            print("Your current score is: ", Score.get_score())
+
+        elif pressed_key == list(key_strokes.values())[1] or \
+                pressed_key == list(key_strokes.values())[5] or \
+                pressed_key == list(key_strokes.values())[10]:
+            Movement.movement_swipe_down(board)
+            print("Your current score is: ", Score.get_score())
+        elif pressed_key == list(key_strokes.values())[2] or \
+                pressed_key == list(key_strokes.values())[6] or \
+                pressed_key == list(key_strokes.values())[11]:
+            Movement.movement_swipe_left(board)
+            print("Your current score is: ", Score.get_score())
+        elif pressed_key == list(key_strokes.values())[3] or \
+                pressed_key == list(key_strokes.values())[7] or \
+                pressed_key == list(key_strokes.values())[12]:
+            Movement.movement_swipe_right(board)
+            print("Your current score is: ", Score.get_score())
+        elif pressed_key == list(key_strokes.values())[8]:
             quit()
         else:
-            sh.flushScreen()
+            SystemHelper.flush_screen()
             print("Wrong key")
-            Board.drawGameBoard(newBoardMatrix)
+            board.draw_game_board()
 
-
-        if mv.gameOver(newBoardMatrix):
+        if Movement.game_over(board):
+            time.sleep(1)
+            print("Game over!")
             print("Restart game? (y/n)")
-            if(input()) == 'y':
-                print("goto main")
+            time.sleep(1.5)
+            if Movement.get_pressed_key() == 121:
+                SystemHelper.flush_screen()
                 main()
             else:
                 quit()
 
+
 if __name__ == '__main__':
-    sh.flushScreen()
+    SystemHelper.flush_screen()
     main()
