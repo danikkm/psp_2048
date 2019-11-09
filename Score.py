@@ -1,18 +1,21 @@
 # Score.py
 
+
 class Score:
 
+    __score = None
+
     def __init__(self, score):
-        self.setScore(score)
+        self.set_score(score)
 
     @classmethod
-    def setScore(self, score):
-        self.__score = score
+    def set_score(cls, score):
+        cls.__score = score
 
     @classmethod
-    def getScore(self):
-        return self.__score
+    def get_score(cls):
+        return cls.__score
 
     @classmethod
-    def addScore(self, score):
-        self.__score += score
+    def add_score(cls, score):
+        cls.__score += score
