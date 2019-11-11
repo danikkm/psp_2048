@@ -12,6 +12,11 @@ from SystemHelper import SystemHelper
 def main():
     board = GameBoard(4)
 
+    # todo: fix score class, so it will initialise everything at once
+    max_score = Score.set_max_score(16)
+    current_score = Score.set_score(0)
+    current_digit = Score.set_current_digit(0)
+    
     board.place_random_element()
 
     print("Controls: capital/non-capital WSAD letter or arrows")
@@ -53,6 +58,10 @@ def main():
             SystemHelper.flush_screen()
             print("Wrong key")
             board.draw_game_board()
+
+        if Score.get_current_digit() == Score.get_max_score():
+            print("Yo've reached max score:", Score.get_max_score())
+            quit()
 
         if Movement.game_over(board):
             time.sleep(1)

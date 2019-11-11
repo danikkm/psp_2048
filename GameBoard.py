@@ -10,7 +10,6 @@ from Score import Score
 class GameBoard:
 
     def __init__(self, size):
-        self.sessionScore = Score(0)
         self.board_matrix = self._create_game_board(size)
         self.board_colors = self._set_board_colors()
         self.matrix_length = self._get_board_len()
@@ -172,9 +171,8 @@ class GameBoard:
             self.set_object("*", x_coordinate, y_coordinate)
             self.set_object(str(int(adjacent_object[0]) * 2), adjacent_object[1], adjacent_object[2])
             self.move_element(adjacent_object[1], adjacent_object[2], direction_to_swipe)
-
-            Score.add_score(int(adjacent_object[0]) * 2)
-
+            Score.sum_score(int(adjacent_object[0]) * 2)
+            Score.set_current_digit(int(adjacent_object[0]) * 2)
             return True
         else:
             assert False, "No way"
