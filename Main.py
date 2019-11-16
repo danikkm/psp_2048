@@ -8,7 +8,10 @@ from SystemHelper import SystemHelper
 
 
 def main():
-    game = Game(8, 0, 3)
+    # todo: add ability to set max score dynamically
+    # todo: allow only numbers power of 2
+    # todo: fix controls when using arrows
+    game = Game(1024, 0, 4)
     system_helper = SystemHelper()
 
     game.board.place_random_element()
@@ -47,7 +50,7 @@ def main():
             print("Game over!")
             print("Restart game? (y/n)")
             time.sleep(1)
-            if game.get_pressed_key() == system_helper.get_key_strokes().get("y"):
+            if game.get_pressed_key() == system_helper.set_key_strokes().get("y"):
                 system_helper.flush_screen()
                 main()
             else:
@@ -56,7 +59,7 @@ def main():
             print("You WON and reached: ", game.score.get_max_score())
             print("Restart game? (y/n)")
             time.sleep(1)
-            if game.get_pressed_key() == system_helper.get_key_strokes().get("y"):
+            if game.get_pressed_key() == system_helper.set_key_strokes().get("y"):
                 system_helper.flush_screen()
                 main()
             else:

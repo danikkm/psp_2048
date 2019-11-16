@@ -28,7 +28,7 @@ class Game(GameLogic):
                 object_at_xy = self.board.get_object(x, y)
                 element_above = self.board.get_object(x, y - 1)
 
-                if object_at_xy == "*":
+                if object_at_xy == self.board.element.get_empty_element():
                     continue
 
                 elif element_above is None:
@@ -52,7 +52,7 @@ class Game(GameLogic):
                 object_at_xy = self.board.get_object(x, y)
                 element_below = self.board.get_object(x, y + 1)
 
-                if object_at_xy == "*":
+                if object_at_xy == self.board.element.get_empty_element():
                     continue
                 elif element_below is None:
                     continue
@@ -72,7 +72,7 @@ class Game(GameLogic):
                 object_at_xy = self.board.get_object(x, y)
                 element_on_the_left = self.board.get_object(x - 1, y)
 
-                if object_at_xy == "*":
+                if object_at_xy == self.board.element.get_empty_element():
                     continue
                 elif element_on_the_left is None:
                     continue
@@ -95,7 +95,7 @@ class Game(GameLogic):
                 object_at_xy = self.board.get_object(x, y)
                 element_on_the_right = self.board.get_object(x + 1, y)
 
-                if object_at_xy == "*":
+                if object_at_xy == self.board.element.get_empty_element():
                     continue
                 elif element_on_the_right is None:
                     continue

@@ -16,7 +16,7 @@ class GameLogic:
     def move_element(self, x_coordinate, y_coordinate, direction_to_swipe):
         object_at_xy = self.board.get_object(x_coordinate, y_coordinate)
 
-        assert object_at_xy != "*", "Error in logic"
+        assert object_at_xy != self.board.element.get_empty_element(), "Error in logic"
 
         valid_swipe_direction = ("UP" == direction_to_swipe or
                                  "DOWN" == direction_to_swipe or
@@ -54,13 +54,13 @@ class GameLogic:
         elif object_at_xy != adjacent_object[0] and adjacent_object[0] != "*":  # cant combine 2 numbers
             return False
 
-        elif adjacent_object[0] == "*":
-            self.board.set_object("*", x_coordinate, y_coordinate)
+        elif adjacent_object[0] == self.board.element.get_empty_element():
+            self.board.set_object(self.board.element.get_empty_element(), x_coordinate, y_coordinate)
             self.board.set_object(object_at_xy, adjacent_object[1], adjacent_object[2])
             self.move_element(adjacent_object[1], adjacent_object[2], direction_to_swipe)
             return True
         elif object_at_xy == adjacent_object[0]:
-            self.board.set_object("*", x_coordinate, y_coordinate)
+            self.board.set_object(self.board.element.get_empty_element(), x_coordinate, y_coordinate)
             self.board.set_object(str(int(adjacent_object[0]) * 2), adjacent_object[1], adjacent_object[2])
             self.move_element(adjacent_object[1], adjacent_object[2], direction_to_swipe)
             self.score.sum_session_score(int(adjacent_object[0]) * 2)
@@ -75,7 +75,7 @@ class GameLogic:
 
         if object_at_xy is None:
             return False
-        elif object_at_xy == "*":
+        elif object_at_xy == self.board.element.get_empty_element():
             return True
 
         return (

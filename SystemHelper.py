@@ -4,21 +4,23 @@ import os
 
 class SystemHelper:
 
+    key_dict = {}
+
     def __init__(self):
-        pass
+        self.key_dict = self.set_key_strokes()
 
     @staticmethod
     def flush_screen():
         try:
             try:
                 os.system('clear')
-            except:
+            except NameError:
                 os.system('cls')
-        except:
+        except NameError:
             print('\n' * 80)
 
     @staticmethod
-    def get_key_strokes():
+    def set_key_strokes():
         return {
             "W": 87,
             "S": 83,
@@ -40,22 +42,22 @@ class SystemHelper:
 
     def pressed_key(self, pressed_key):
 
-        if pressed_key == self.get_key_strokes().get("W") or \
-                pressed_key == self.get_key_strokes().get("w") or \
-                pressed_key == self.get_key_strokes().get("upArrow"):
+        if pressed_key == self.key_dict.get("W") or \
+                pressed_key == self.key_dict.get("w") or \
+                pressed_key == self.key_dict.get("upArrow"):
             return "UP"
-        if pressed_key == self.get_key_strokes().get("S") or \
-                pressed_key == self.get_key_strokes().get("s") or \
-                pressed_key == self.get_key_strokes().get("downArrow"):
+        if pressed_key == self.key_dict.get("S") or \
+                pressed_key == self.key_dict.get("s") or \
+                pressed_key == self.key_dict.get("downArrow"):
             return "DOWN"
-        if pressed_key == self.get_key_strokes().get("A") or \
-                pressed_key == self.get_key_strokes().get("a") or \
-                pressed_key == self.get_key_strokes().get("leftArrow"):
+        if pressed_key == self.key_dict.get("A") or \
+                pressed_key == self.key_dict.get("a") or \
+                pressed_key == self.key_dict.get("leftArrow"):
             return "LEFT"
-        if pressed_key == self.get_key_strokes().get("D") or \
-                pressed_key == self.get_key_strokes().get("d") or \
-                pressed_key == self.get_key_strokes().get("rightArrow"):
+        if pressed_key == self.key_dict.get("D") or \
+                pressed_key == self.key_dict.get("d") or \
+                pressed_key == self.key_dict.get("rightArrow"):
             return "RIGHT"
-        if pressed_key == self.get_key_strokes().get("Q") or \
-                pressed_key == self.get_key_strokes().get("q"):
+        if pressed_key == self.key_dict.get("Q") or \
+                pressed_key == self.key_dict.get("q"):
             return "QUIT"

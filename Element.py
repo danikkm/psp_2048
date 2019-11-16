@@ -12,7 +12,8 @@ class Element:
     def get_empty_element(self):
         return self.__empty_element
 
-    def get_random_number(self, number_range):
+    @staticmethod
+    def get_random_number(number_range):
         return random.randrange(number_range)
 
     def get_generated_number_in_range(self):

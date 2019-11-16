@@ -9,12 +9,14 @@ class Board:
     __size = None
     __board = None
     __board_length = None
+    __board_colors = None
 
     def __init__(self, size):
         self.element = Element()
         self.set_size(size)
         self.__board = self._create_board(size)
         self.__board_length = self.set_board_length()
+        self.__board_colors = self.set_board_colors()
         self.randomly_generated_number_x = 0
         self.randomly_generated_number_y = 0
 
@@ -35,8 +37,8 @@ class Board:
     def get_board_length(self):
         return self.__board_length
 
-    @property
-    def get_board_colors(self):
+    @staticmethod
+    def set_board_colors():
         return {
             '*': None,
             '2': 'red',
@@ -52,6 +54,9 @@ class Board:
             '2048': 'red'
         }
 
+    def get_board_colors(self):
+        return self.__board_colors
+
     def draw_game_board(self):
         vertical_border = ""
         for i in range(self.get_board_length() + 2):
@@ -61,7 +66,7 @@ class Board:
             row = ""
             for x in self.get_board()[y]:
                 if termcolor is not None:
-                    row += termcolor.colored(x, self.get_board_colors[x])
+                    row += termcolor.colored(x, self.get_board_colors()[x])
                 else:
                     row += x
                 row += "\t"
