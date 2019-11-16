@@ -12,12 +12,12 @@ class Score:
         self.set_current_digit(score)
 
     @classmethod
-    def set_score(cls, score):
-        cls.__score = score
+    def sum_session_score(cls, session_score):
+        cls.__session_score += session_score
 
     @classmethod
-    def get_score(cls):
-        return cls.__score
+    def set_session_score(cls, session_score):
+        cls.__session_score = session_score
 
     @classmethod
     def sum_score(cls, score):
@@ -30,11 +30,3 @@ class Score:
     @classmethod
     def get_max_score(cls):
         return cls.__max_score
-
-    @classmethod
-    def set_current_digit(cls, current_digit):
-        cls.__current_digit = current_digit
-
-    @classmethod
-    def get_current_digit(cls):
-        return cls.__current_digit

@@ -9,12 +9,14 @@ from Score import Score
 
 class GameBoard:
 
-    def __init__(self, size):
+    def __init__(self, max_score, session_score, size):
+        self.score = Score(max_score, session_score)
         self.board_matrix = self._create_game_board(size)
         self.board_colors = self._set_board_colors()
         self.matrix_length = self._get_board_len()
         self.randomly_generated_number_x = 0
         self.randomly_generated_number_y = 0
+        self.swiped = False
 
     def get_board(self):
         return self.board_matrix
@@ -35,7 +37,7 @@ class GameBoard:
             '16': 'magenta',
             '32': 'cyan',
             '64': 'blue',
-            '128': 'grey',
+            '128': 'magenta',
             '256': 'white',
             '512': 'green',
             '1024': 'blue',
@@ -80,12 +82,13 @@ class GameBoard:
 
         else:
             digit_to_place = "8"
-        found_place = False
-        while not found_place:
+        found_where_to_place = False
+        while not found_where_to_place:
             self.randomly_generated_number_x = self.get_random_number(self.matrix_length)
             self.randomly_generated_number_y = self.get_random_number(self.matrix_length)
 
-            found_place = self.get_object(self.randomly_generated_number_x, self.randomly_generated_number_y) == '*'
+            found_where_to_place = self.get_object(self.randomly_generated_number_x,
+                                                   self.randomly_generated_number_y) == '*'
 
         self.set_object(digit_to_place, self.randomly_generated_number_x, self.randomly_generated_number_y)
 
@@ -105,8 +108,7 @@ class GameBoard:
     def get_object(self, x_coordinate, y_coordinate):
         assert type(x_coordinate) == type(y_coordinate), "Values must be an int type"
 
-        if x_coordinate >= self.matrix_length or y_coordinate >= len(
-                self.board_matrix) or x_coordinate < 0 or y_coordinate < 0:
+        if self.given_coordinates_are_not_valid(x_coordinate, y_coordinate):
             return None
 
         return self.board_matrix[y_coordinate][x_coordinate]
@@ -114,11 +116,11 @@ class GameBoard:
     def set_object(self, object_to_place, x_coordinate, y_coordinate):
         assert type(x_coordinate) == type(y_coordinate) == int, "Values must be an int types"
 
-        if x_coordinate >= self.matrix_length or y_coordinate >= len(
-                self.board_matrix) or x_coordinate < 0 or y_coordinate < 0:
+        if self.given_coordinates_are_not_valid(x_coordinate, y_coordinate):
             return False
 
         self.board_matrix[y_coordinate][x_coordinate] = object_to_place
+
         return True
 
     def move_element(self, x_coordinate, y_coordinate, direction_to_swipe):
@@ -171,8 +173,7 @@ class GameBoard:
             self.set_object("*", x_coordinate, y_coordinate)
             self.set_object(str(int(adjacent_object[0]) * 2), adjacent_object[1], adjacent_object[2])
             self.move_element(adjacent_object[1], adjacent_object[2], direction_to_swipe)
-            Score.sum_score(int(adjacent_object[0]) * 2)
-            Score.set_current_digit(int(adjacent_object[0]) * 2)
+            self.score.sum_session_score(int(adjacent_object[0]) * 2)
             return True
         else:
             assert False, "No way"
@@ -193,3 +194,8 @@ class GameBoard:
                 object_at_xy == self.get_object(x_coordinate - 1, y_coordinate) or
                 object_at_xy == self.get_object(x_coordinate + 1, y_coordinate)
         )
+
+    def given_coordinates_are_not_valid(self, x_coordinate, y_coordinate):
+        if x_coordinate >= self.matrix_length or y_coordinate >= self.matrix_length \
+                or x_coordinate < 0 or y_coordinate < 0:
+            return True

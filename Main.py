@@ -3,55 +3,55 @@
 
 import time
 
-from GameBoard import GameBoard
 from Movement import Movement
-from Score import Score
 from SystemHelper import SystemHelper
 
 
 def main():
-    board = GameBoard(4)
+    # board = GameBoard(32, 4)
+    # todo: rename and extract Movement class
+    # todo: extract GameBoard class 
+    board = Movement(32, 0, 4)
 
-    # todo: fix score class, so it will initialise everything at once
-    max_score = Score.set_max_score(16)
-    current_score = Score.set_score(0)
-    current_digit = Score.set_current_digit(0)
-    
+    # board.place_random_element()
+
     board.place_random_element()
 
     print("Controls: capital/non-capital WSAD letter or arrows")
     print("To exit the game press: q")
 
+    # board.draw_game_board()
+
     board.draw_game_board()
 
     key_strokes = SystemHelper.get_key_strokes()
 
-    print("Your current score is: ", Score.get_score())
+    print("Your current score is: ", board.score.get_session_score())
 
     while True:
-        pressed_key = Movement.get_pressed_key()
+        pressed_key = board.get_pressed_key()
 
         if pressed_key == list(key_strokes.values())[0] or \
                 pressed_key == list(key_strokes.values())[4] or \
                 pressed_key == list(key_strokes.values())[9]:
-            Movement.movement_swipe_up(board)
-            print("Your current score is: ", Score.get_score())
+            board.movement_swipe_up()
+            print("Your current score is: ", board.score.get_session_score())
 
         elif pressed_key == list(key_strokes.values())[1] or \
                 pressed_key == list(key_strokes.values())[5] or \
                 pressed_key == list(key_strokes.values())[10]:
-            Movement.movement_swipe_down(board)
-            print("Your current score is: ", Score.get_score())
+            board.movement_swipe_down()
+            print("Your current score is: ", board.score.get_session_score())
         elif pressed_key == list(key_strokes.values())[2] or \
                 pressed_key == list(key_strokes.values())[6] or \
                 pressed_key == list(key_strokes.values())[11]:
-            Movement.movement_swipe_left(board)
-            print("Your current score is: ", Score.get_score())
+            board.movement_swipe_left()
+            print("Your current score is: ", board.score.get_session_score())
         elif pressed_key == list(key_strokes.values())[3] or \
                 pressed_key == list(key_strokes.values())[7] or \
                 pressed_key == list(key_strokes.values())[12]:
-            Movement.movement_swipe_right(board)
-            print("Your current score is: ", Score.get_score())
+            board.movement_swipe_right()
+            print("Your current score is: ", board.score.get_session_score())
         elif pressed_key == list(key_strokes.values())[8]:
             quit()
         else:
@@ -59,16 +59,21 @@ def main():
             print("Wrong key")
             board.draw_game_board()
 
-        if Score.get_current_digit() == Score.get_max_score():
-            print("Yo've reached max score:", Score.get_max_score())
-            quit()
-
-        if Movement.game_over(board):
+        if board.game_over():
             time.sleep(1)
             print("Game over!")
             print("Restart game? (y/n)")
             time.sleep(1.5)
-            if Movement.get_pressed_key() == 121:
+            if board.get_pressed_key() == 121:
+                SystemHelper.flush_screen()
+                main()
+            else:
+                quit()
+        elif board.reached_max_score():
+            print("You WON and reached: ", board.score.get_max_score())
+            print("Restart game? (y/n)")
+            time.sleep(1.5)
+            if board.get_pressed_key() == 121:
                 SystemHelper.flush_screen()
                 main()
             else:

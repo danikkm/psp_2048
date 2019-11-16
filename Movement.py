@@ -9,18 +9,20 @@ from SystemHelper import SystemHelper
 
 
 class Movement(GameBoard):
+    swiped = None
 
-    @classmethod
-    def swipe_current_element(cls, game_board):
+    def __init__(self, max_score, session_score, size):
+        super().__init__(max_score, session_score, size)
+
+    def swipe_current_element(self):
         SystemHelper.flush_screen()
-        game_board.draw_game_board()
+        self.draw_game_board()
         time.sleep(.3)
-        game_board.place_random_element()
+        self.place_random_element()
         SystemHelper.flush_screen()
-        game_board.draw_game_board()
+        self.draw_game_board()
 
     def movement_swipe_up(self):
-        swiped = False
         for y in range(self.matrix_length):
             for x in range(self.matrix_length):
                 object_at_xy = self.get_object(x, y)
@@ -32,9 +34,9 @@ class Movement(GameBoard):
                 elif element_above is None:
                     continue
 
-                swiped = self.move_element(x, y, "UP") or swiped
+                self.swiped = self.move_element(x, y, "UP") or self.swiped
 
-        if swiped:
+        if self.swiped:
             Movement.swipe_current_element(self)
         else:
             SystemHelper.flush_screen()
@@ -42,7 +44,6 @@ class Movement(GameBoard):
             time.sleep(.3)
 
     def movement_swipe_down(self):
-        swiped = False
 
         for y in range(self.matrix_length):
             y = self.matrix_length - 1 - y
@@ -56,8 +57,8 @@ class Movement(GameBoard):
                 elif element_below is None:
                     continue
 
-                swiped = self.move_element(x, y, "DOWN") or swiped
-        if swiped:
+                self.swiped = self.move_element(x, y, "DOWN") or self.swiped
+        if self.swiped:
             Movement.swipe_current_element(self)
         else:
             SystemHelper.flush_screen()
@@ -65,7 +66,6 @@ class Movement(GameBoard):
             time.sleep(.3)
 
     def movement_swipe_left(self):
-        swiped = False
 
         for y in range(self.matrix_length):
             for x in range(self.matrix_length):
@@ -77,9 +77,9 @@ class Movement(GameBoard):
                 elif element_on_the_left is None:
                     continue
 
-                swiped = self.move_element(x, y, "LEFT") or swiped
+                self.swiped = self.move_element(x, y, "LEFT") or self.swiped
 
-        if swiped:
+        if self.swiped:
             Movement.swipe_current_element(self)
         else:
             SystemHelper.flush_screen()
@@ -87,7 +87,6 @@ class Movement(GameBoard):
             time.sleep(.3)
 
     def movement_swipe_right(self):
-        swiped = False
 
         for y in range(self.matrix_length):
             for x in range(self.matrix_length):
@@ -101,9 +100,9 @@ class Movement(GameBoard):
                 elif element_on_the_right is None:
                     continue
 
-                swiped = self.move_element(x, y, "RIGHT") or swiped
+                self.swiped = self.move_element(x, y, "RIGHT") or self.swiped
 
-        if swiped:
+        if self.swiped:
             Movement.swipe_current_element(self)
         else:
             SystemHelper.flush_screen()
@@ -116,6 +115,12 @@ class Movement(GameBoard):
                 if self.is_it_possible_to_swipe(x, y):
                     return False
         return True
+
+    def reached_max_score(self):
+        for y in range(self.matrix_length):
+            for x in range(len(self.get_board()[0])):
+                if self.get_board()[y][x] == str(self.score.get_max_score()):
+                    return True
 
     # todo: fix getch catches length 0
     @staticmethod
