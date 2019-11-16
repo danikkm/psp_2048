@@ -2,14 +2,12 @@
 
 
 class Score:
-    __score = None
     __max_score = None
-    __current_digit = None
+    __session_score = None
 
-    def __init__(self, score):
-        self.set_score(score)
-        self.set_max_score(score)
-        self.set_current_digit(score)
+    def __init__(self, max_score, session_score):
+        self.set_session_score(session_score)
+        self.set_max_score(max_score)
 
     @classmethod
     def sum_session_score(cls, session_score):
@@ -20,8 +18,8 @@ class Score:
         cls.__session_score = session_score
 
     @classmethod
-    def sum_score(cls, score):
-        cls.__score += score
+    def get_session_score(cls):
+        return cls.__session_score
 
     @classmethod
     def set_max_score(cls, max_score):
