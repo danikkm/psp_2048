@@ -4,6 +4,9 @@ import os
 
 class SystemHelper:
 
+    def __init__(self):
+        pass
+
     @staticmethod
     def flush_screen():
         try:
@@ -25,9 +28,34 @@ class SystemHelper:
             "s": 115,
             "a": 97,
             "d": 100,
-            "q": 113,
             "upArrow": 65,
             "downArrow": 66,
             "leftArrow": 68,
-            "rightArrow": 67
+            "rightArrow": 67,
+            "q": 113,
+            "Q": 81,
+            "y": 121
+
         }
+
+    def pressed_key(self, pressed_key):
+
+        if pressed_key == self.get_key_strokes().get("W") or \
+                pressed_key == self.get_key_strokes().get("w") or \
+                pressed_key == self.get_key_strokes().get("upArrow"):
+            return "UP"
+        if pressed_key == self.get_key_strokes().get("S") or \
+                pressed_key == self.get_key_strokes().get("s") or \
+                pressed_key == self.get_key_strokes().get("downArrow"):
+            return "DOWN"
+        if pressed_key == self.get_key_strokes().get("A") or \
+                pressed_key == self.get_key_strokes().get("a") or \
+                pressed_key == self.get_key_strokes().get("leftArrow"):
+            return "LEFT"
+        if pressed_key == self.get_key_strokes().get("D") or \
+                pressed_key == self.get_key_strokes().get("d") or \
+                pressed_key == self.get_key_strokes().get("rightArrow"):
+            return "RIGHT"
+        if pressed_key == self.get_key_strokes().get("Q") or \
+                pressed_key == self.get_key_strokes().get("q"):
+            return "QUIT"
