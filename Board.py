@@ -2,28 +2,30 @@
 
 import termcolor
 
+from BoardDecorator import BoardDecorator
 from Element import Element
+
 
 
 class Board:
     __size = None
     __board = None
     __board_length = None
-    __board_colors = None
 
     def __init__(self, size):
         self.element = Element()
+        self.board_decorator = BoardDecorator()
         self.set_size(size)
-        self.__board = self._create_board(size)
+        self.__board = self.create_board(size)
         self.__board_length = self.set_board_length()
-        self.__board_colors = self.set_board_colors()
+
         self.randomly_generated_number_x = 0
         self.randomly_generated_number_y = 0
 
     def set_size(self, size):
         self.__size = size
 
-    def _create_board(self, size):
+    def create_board(self, size):
         assert size > 1, "Wrong number, must be: > 1"
         assert type(size) == int, "Argument must be an int type"
         return [[self.element.get_empty_element() for _ in range(size)] for _ in range(size)]
@@ -37,26 +39,6 @@ class Board:
     def get_board_length(self):
         return self.__board_length
 
-    @staticmethod
-    def set_board_colors():
-        return {
-            '*': None,
-            '2': 'red',
-            '4': 'yellow',
-            '8': 'green',
-            '16': 'magenta',
-            '32': 'cyan',
-            '64': 'blue',
-            '128': 'magenta',
-            '256': 'white',
-            '512': 'green',
-            '1024': 'blue',
-            '2048': 'red'
-        }
-
-    def get_board_colors(self):
-        return self.__board_colors
-
     def draw_game_board(self):
         vertical_border = ""
         for i in range(self.get_board_length() + 2):
@@ -66,7 +48,7 @@ class Board:
             row = ""
             for x in self.get_board()[y]:
                 if termcolor is not None:
-                    row += termcolor.colored(x, self.get_board_colors()[x])
+                    row += termcolor.colored(x, self.board_decorator.get_board_colors()[x])
                 else:
                     row += x
                 row += "\t"
@@ -94,7 +76,7 @@ class Board:
             self.randomly_generated_number_y = self.element.get_random_number(self.get_board_length())
 
             found_where_to_place = self.get_object(self.randomly_generated_number_x,
-                                                   self.randomly_generated_number_y) == '*'
+                                                   self.randomly_generated_number_y) == self.element.get_empty_element()
 
         self.set_object(self.element.get_generated_number_in_range(), self.randomly_generated_number_x,
                         self.randomly_generated_number_y)

@@ -10,8 +10,7 @@ from SystemHelper import SystemHelper
 def main():
     # todo: add ability to set max score dynamically
     # todo: allow only numbers power of 2
-    # todo: fix controls when using arrows
-    game = Game(1024, 0, 4)
+    game = Game(2048, 0, 4)
     system_helper = SystemHelper()
 
     game.board.place_random_element()

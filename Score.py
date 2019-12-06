@@ -1,5 +1,7 @@
 # Score.py
 
+from ValidInput import ValidInput
+
 
 class Score:
     __max_score = None
@@ -19,6 +21,7 @@ class Score:
         return self.__session_score
 
     def set_max_score(self, max_score):
+        assert ValidInput.is_power_of_two(max_score), "Wrong number"
         self.__max_score = max_score
 
     def get_max_score(self):

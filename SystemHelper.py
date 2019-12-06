@@ -36,7 +36,8 @@ class SystemHelper:
             "rightArrow": 67,
             "q": 113,
             "Q": 81,
-            "y": 121
+            "y": 121,
+            "n": 110
 
         }
 
