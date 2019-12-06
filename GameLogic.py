@@ -1,7 +1,9 @@
 # GameLogic.py
+import time
 
 from Board import Board
 from Score import Score
+from SystemHelper import SystemHelper
 
 
 class GameLogic:
@@ -11,7 +13,13 @@ class GameLogic:
 
         self.board = Board(size)
 
-        self.swiped = False
+    def swipe_current_element(self):
+        SystemHelper.flush_screen()
+        self.board.draw_game_board()
+        time.sleep(.3)
+        self.board.place_random_element()
+        SystemHelper.flush_screen()
+        self.board.draw_game_board()
 
     def move_element(self, x_coordinate, y_coordinate, direction_to_swipe):
         object_at_xy = self.board.get_object(x_coordinate, y_coordinate)
@@ -28,26 +36,16 @@ class GameLogic:
         if direction_to_swipe == "UP":
             adjacent_object = (self.board.get_object(x_coordinate, y_coordinate - 1),
                                x_coordinate, y_coordinate - 1)
-            # debug
-            # print("Swiped", directionToSwipe, "supposed to swipe:", "up")
 
         elif direction_to_swipe == "DOWN":
             adjacent_object = (self.board.get_object(x_coordinate, y_coordinate + 1),
                                x_coordinate, y_coordinate + 1)
-            # debug
-            # print("Swiped", directionToSwipe, "supposed to swipe:", "down")
-
         elif direction_to_swipe == "LEFT":
             adjacent_object = (self.board.get_object(x_coordinate - 1, y_coordinate),
                                x_coordinate - 1, y_coordinate)
-            # debug
-            # print("Swiped", directionToSwipe, "supposed to swipe:", "left")
-
         elif direction_to_swipe == "RIGHT":
             adjacent_object = (self.board.get_object(x_coordinate + 1, y_coordinate),
                                x_coordinate + 1, y_coordinate)
-            # debug
-            # print("Swiped", directionToSwipe, "supposed to swipe:", "right")
 
         if adjacent_object[0] is None:  # edge of the board
             return False
@@ -67,8 +65,6 @@ class GameLogic:
             return True
         else:
             assert False, "No way"
-
-        return False
 
     def is_it_possible_to_swipe(self, x_coordinate, y_coordinate):
         object_at_xy = self.board.get_object(x_coordinate, y_coordinate)

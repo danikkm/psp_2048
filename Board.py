@@ -85,7 +85,6 @@ class Board:
 
     def place_random_element(self):
         if self.board_is_full():
-            print("not supposed to be here")
             return False
 
         found_where_to_place = False

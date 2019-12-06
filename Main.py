@@ -21,24 +21,19 @@ def main():
 
     game.board.draw_game_board()
 
-    print("Your current score is: ", game.score.get_session_score())
-
     while True:
+        print("Your current score is: ", game.score.get_session_score())
         pressed_key = game.get_pressed_key()
 
         if system_helper.pressed_key(pressed_key) == "UP":
             game.movement_swipe_up()
-            print("Your current score is: ", game.score.get_session_score())
 
         elif system_helper.pressed_key(pressed_key) == "DOWN":
             game.movement_swipe_down()
-            print("Your current score is: ", game.score.get_session_score())
         elif system_helper.pressed_key(pressed_key) == "LEFT":
             game.movement_swipe_left()
-            print("Your current score is: ", game.score.get_session_score())
         elif system_helper.pressed_key(pressed_key) == "RIGHT":
             game.movement_swipe_right()
-            print("Your current score is: ", game.score.get_session_score())
         elif system_helper.pressed_key(pressed_key) == "QUIT":
             quit()
         else:

@@ -15,17 +15,15 @@ class TestGame(unittest.TestCase):
     def tearDownClass(cls):
         print('teardownClass')
 
-
     def setUp(self):
         print('setUp')
         self.game_1 = Game(1024, 0, 4)
         self.game_2 = Game(16, 0, 3)
 
-
     def tearDown(self):
         print('tearDown\n')
 
-    def test_create_board (self):
+    def test_create_board(self):
         print('test_create_board')
         self.assertEqual(self.game_1.board.get_board_length(), 4)
         self.assertEqual(self.game_2.board.get_board_length(), 3)
@@ -41,19 +39,11 @@ class TestGame(unittest.TestCase):
         self.assertEqual(self.game_1.score.get_max_score(), 2048)
         self.assertEqual(self.game_2.score.get_max_score(), 256)
 
-    def test_set_object(self):
+    def test_get_object(self):
         print('test_set_object')
-        self.assertEqual(self.game_1.board.get_object(1,1), '*')
+        self.assertEqual(self.game_1.board.get_object(1, 1), '*')
         self.assertEqual(self.game_1.board.get_object(-1, -1), None)
-
-
 
 
 if __name__ == '__main__':
     unittest.main()
-
-
-
-
-
-
