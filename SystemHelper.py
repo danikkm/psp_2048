@@ -3,7 +3,6 @@ import os
 
 
 class SystemHelper:
-
     key_dict = {}
 
     def __init__(self):

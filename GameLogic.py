@@ -8,8 +8,8 @@ from SystemHelper import SystemHelper
 
 class GameLogic:
 
-    def __init__(self, max_score, session_score, size):
-        self.score = Score(max_score, session_score)
+    def __init__(self, max_score, size):
+        self.score = Score(max_score)
         self.board = Board(size)
 
     def swipe_current_element(self):

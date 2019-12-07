@@ -7,8 +7,8 @@ class Score:
     __max_score = None
     __session_score = None
 
-    def __init__(self, max_score, session_score):
-        self.set_session_score(session_score)
+    def __init__(self, max_score):
+        self.set_session_score(0)
         self.set_max_score(max_score)
 
     def sum_session_score(self, session_score):

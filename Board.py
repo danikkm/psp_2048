@@ -7,7 +7,6 @@ from Element import Element
 
 
 class Board:
-
     __size = None
     __board = None
     __board_length = None

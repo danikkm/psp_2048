@@ -8,9 +8,7 @@ from SystemHelper import SystemHelper
 
 
 def main():
-    # todo: add ability to set max score dynamically
-    # todo: allow only numbers power of 2
-    game = Game(2048, 0, 4)
+    game = Game(2048, 4)
     system_helper = SystemHelper()
 
     game.board.place_random_element()
@@ -19,14 +17,6 @@ def main():
     print("To exit the game press: q")
 
     game.board.draw_game_board()
-
-    # Debug
-    # game.movement_swipe_up()
-    # game.movement_swipe_up()
-    # game.movement_swipe_up()
-    # game.movement_swipe_down()
-    # game.movement_swipe_down()
-    # game.movement_swipe_down()
 
     while True:
         print("Your current score is: ", game.score.get_session_score())

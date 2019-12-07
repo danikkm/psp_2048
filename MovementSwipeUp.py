@@ -6,8 +6,8 @@ from SystemHelper import SystemHelper
 
 class MovementSwipeUp(GameLogic):
 
-    def __init__(self, max_score, session_score, size):
-        super().__init__(max_score, session_score, size)
+    def __init__(self, max_score, size):
+        super().__init__(max_score, size)
 
     def swipe(self):
         swiped_up = False

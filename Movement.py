@@ -24,4 +24,3 @@ class Movement:
     @staticmethod
     def swipe_right(obj):
         return MovementSwipeRight.swipe(obj)
-
