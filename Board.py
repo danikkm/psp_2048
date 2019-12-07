@@ -6,8 +6,8 @@ from BoardDecorator import BoardDecorator
 from Element import Element
 
 
-
 class Board:
+
     __size = None
     __board = None
     __board_length = None
@@ -75,15 +75,15 @@ class Board:
             self.randomly_generated_number_x = self.element.get_random_number(self.get_board_length())
             self.randomly_generated_number_y = self.element.get_random_number(self.get_board_length())
 
-            found_where_to_place = self.get_object(self.randomly_generated_number_x,
-                                                   self.randomly_generated_number_y) == self.element.get_empty_element()
+            found_where_to_place = self.get_element(self.randomly_generated_number_x,
+                                                    self.randomly_generated_number_y) == self.element.get_empty_element()
 
-        self.set_object(self.element.get_generated_number_in_range(), self.randomly_generated_number_x,
-                        self.randomly_generated_number_y)
+        self.set_element(self.element.get_generated_number_in_range(), self.randomly_generated_number_x,
+                         self.randomly_generated_number_y)
 
         return True
 
-    def get_object(self, x_coordinate, y_coordinate):
+    def get_element(self, x_coordinate, y_coordinate):
         assert type(x_coordinate) == type(y_coordinate), "Values must be an int type"
 
         if self.given_coordinates_are_not_valid(x_coordinate, y_coordinate):
@@ -91,7 +91,7 @@ class Board:
 
         return self.get_board()[y_coordinate][x_coordinate]
 
-    def set_object(self, object_to_place, x_coordinate, y_coordinate):
+    def set_element(self, object_to_place, x_coordinate, y_coordinate):
         assert type(x_coordinate) == type(y_coordinate) == int, "Values must be an int types"
 
         if self.given_coordinates_are_not_valid(x_coordinate, y_coordinate):

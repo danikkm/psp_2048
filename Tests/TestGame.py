@@ -41,8 +41,8 @@ class TestGame(unittest.TestCase):
 
     def test_get_object(self):
         print('test_set_object')
-        self.assertEqual(self.game_1.board.get_object(1, 1), '*')
-        self.assertEqual(self.game_1.board.get_object(-1, -1), None)
+        self.assertEqual(self.game_1.board.get_element(1, 1), '*')
+        self.assertEqual(self.game_1.board.get_element(-1, -1), None)
 
 
 if __name__ == '__main__':

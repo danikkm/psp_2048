@@ -13,10 +13,10 @@ class MovementSwipeLeft(GameLogic):
         swiped_left = False
         for y in range(self.board.get_board_length()):
             for x in range(self.board.get_board_length()):
-                object_at_xy = self.board.get_object(x, y)
-                element_on_the_left = self.board.get_object(x - 1, y)
+                element_at_xy = self.board.get_element(x, y)
+                element_on_the_left = self.board.get_element(x - 1, y)
 
-                if object_at_xy == self.board.element.get_empty_element():
+                if element_at_xy == self.board.element.get_empty_element():
                     continue
 
                 elif element_on_the_left is None:

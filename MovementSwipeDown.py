@@ -15,10 +15,10 @@ class MovementSwipeDown(GameLogic):
             y = self.board.get_board_length() - 1 - y
 
             for x in range(self.board.get_board_length()):
-                object_at_xy = self.board.get_object(x, y)
-                element_below = self.board.get_object(x, y + 1)
+                element_at_xy = self.board.get_element(x, y)
+                element_below = self.board.get_element(x, y + 1)
 
-                if object_at_xy == self.board.element.get_empty_element():
+                if element_at_xy == self.board.element.get_empty_element():
                     continue
                 elif element_below is None:
                     continue

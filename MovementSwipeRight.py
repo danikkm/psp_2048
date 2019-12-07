@@ -14,10 +14,10 @@ class MovementSwipeRight(GameLogic):
             for x in range(self.board.get_board_length()):
                 x = self.board.get_board_length() - 1 - x
 
-                object_at_xy = self.board.get_object(x, y)
-                element_on_the_right = self.board.get_object(x + 1, y)
+                element_at_xy = self.board.get_element(x, y)
+                element_on_the_right = self.board.get_element(x + 1, y)
 
-                if object_at_xy == self.board.element.get_empty_element():
+                if element_at_xy == self.board.element.get_empty_element():
                     continue
                 elif element_on_the_right is None:
                     continue

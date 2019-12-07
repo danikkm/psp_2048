@@ -20,6 +20,14 @@ def main():
 
     game.board.draw_game_board()
 
+    # Debug
+    # game.movement_swipe_up()
+    # game.movement_swipe_up()
+    # game.movement_swipe_up()
+    # game.movement_swipe_down()
+    # game.movement_swipe_down()
+    # game.movement_swipe_down()
+
     while True:
         print("Your current score is: ", game.score.get_session_score())
         pressed_key = game.get_pressed_key()
