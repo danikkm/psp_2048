@@ -1,7 +1,6 @@
-import time
+# MovementSwipeDown.py
 
 from GameLogic import GameLogic
-from SystemHelper import SystemHelper
 
 
 class MovementSwipeDown(GameLogic):
@@ -13,7 +12,6 @@ class MovementSwipeDown(GameLogic):
         swiped_down = False
         for y in range(self.board.get_board_length()):
             y = self.board.get_board_length() - 1 - y
-
             for x in range(self.board.get_board_length()):
                 element_at_xy = self.board.get_element(x, y)
                 element_below = self.board.get_element(x, y + 1)
@@ -24,9 +22,8 @@ class MovementSwipeDown(GameLogic):
                     continue
 
                 swiped_down = self.move_element(x, y, "DOWN") or swiped_down
+
         if swiped_down:
             self.swipe_current_element()
         else:
-            SystemHelper.flush_screen()
-            self.board.draw_game_board()
-            time.sleep(.3)
+            self.do_nothing()

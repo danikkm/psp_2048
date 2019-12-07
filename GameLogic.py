@@ -1,4 +1,5 @@
 # GameLogic.py
+
 import time
 
 from Board import Board
@@ -19,6 +20,11 @@ class GameLogic:
         self.board.place_random_element()
         SystemHelper.flush_screen()
         self.board.draw_game_board()
+
+    def do_nothing(self):
+        SystemHelper.flush_screen()
+        self.board.draw_game_board()
+        time.sleep(.3)
 
     def move_element(self, x_coordinate, y_coordinate, direction_to_swipe):
         element_at_xy = self.board.get_element(x_coordinate, y_coordinate)

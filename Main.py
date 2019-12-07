@@ -1,6 +1,5 @@
 # Main.py
 
-
 import time
 
 from Game import Game

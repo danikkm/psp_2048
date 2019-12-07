@@ -1,7 +1,7 @@
-import time
+# MovementSwipeUp.py
+
 
 from GameLogic import GameLogic
-from SystemHelper import SystemHelper
 
 
 class MovementSwipeUp(GameLogic):
@@ -27,6 +27,4 @@ class MovementSwipeUp(GameLogic):
         if swiped_up:
             self.swipe_current_element()
         else:
-            SystemHelper.flush_screen()
-            self.board.draw_game_board()
-            time.sleep(.3)
+            self.do_nothing()

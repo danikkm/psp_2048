@@ -1,10 +1,11 @@
-import time
+# MovementSwipeRight.py
+
 
 from GameLogic import GameLogic
-from SystemHelper import SystemHelper
 
 
 class MovementSwipeRight(GameLogic):
+
     def __init__(self, max_score, size):
         super().__init__(max_score, size)
 
@@ -27,6 +28,4 @@ class MovementSwipeRight(GameLogic):
         if swiped_right:
             self.swipe_current_element()
         else:
-            SystemHelper.flush_screen()
-            self.board.draw_game_board()
-            time.sleep(.3)
+            self.do_nothing()

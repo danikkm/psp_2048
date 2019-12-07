@@ -1,7 +1,6 @@
-import time
+# MovementSwipeLeft.py
 
 from GameLogic import GameLogic
-from SystemHelper import SystemHelper
 
 
 class MovementSwipeLeft(GameLogic):
@@ -27,6 +26,4 @@ class MovementSwipeLeft(GameLogic):
         if swiped_left:
             self.swipe_current_element()
         else:
-            SystemHelper.flush_screen()
-            self.board.draw_game_board()
-            time.sleep(.3)
+            self.do_nothing()
