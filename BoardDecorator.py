@@ -1,5 +1,6 @@
 # BoardDecorator.py
 
+
 class BoardDecorator:
     __board_colors = None
 
