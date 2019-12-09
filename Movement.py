@@ -12,17 +12,18 @@ class Movement:
         pass
 
     @staticmethod
-    def swipe_up(obj):
-        return MovementSwipeUp.swipe(obj)
-
-    @staticmethod
-    def swipe_down(obj):
-        return MovementSwipeDown.swipe(obj)
-
-    @staticmethod
-    def swipe_left(obj):
-        return MovementSwipeLeft.swipe(obj)
-
-    @staticmethod
-    def swipe_right(obj):
-        return MovementSwipeRight.swipe(obj)
+    def swipe(obj, pressed_key):
+        try:
+            if pressed_key == "UP":
+                return MovementSwipeUp.swipe(obj, "UP")
+            elif pressed_key == "DOWN":
+                return MovementSwipeDown.swipe(obj, "DOWN")
+            elif pressed_key == "LEFT":
+                return MovementSwipeLeft.swipe(obj, "LEFT")
+            elif pressed_key == "RIGHT":
+                return MovementSwipeRight.swipe(obj, "RIGHT")
+            elif pressed_key == "QUIT":
+                quit()
+            raise AssertionError("Wrong key")
+        except AssertionError as _e:
+            print(_e)

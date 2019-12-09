@@ -1,13 +1,14 @@
 # GameLogic.py
 
 import time
+from abc import ABCMeta, abstractmethod
 
 from Board import Board
 from Score import Score
 from SystemHelper import SystemHelper
 
 
-class GameLogic:
+class GameLogic(metaclass=ABCMeta):
 
     def __init__(self, max_score, size):
         self.score = Score(max_score)
@@ -25,6 +26,10 @@ class GameLogic:
         SystemHelper.flush_screen()
         self.board.draw_game_board()
         time.sleep(.3)
+
+    @abstractmethod
+    def swipe(self, pressed_key):
+        return pressed_key
 
     def move_element(self, x_coordinate, y_coordinate, direction_to_swipe):
         element_at_xy = self.board.get_element(x_coordinate, y_coordinate)

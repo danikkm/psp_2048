@@ -19,23 +19,10 @@ def main():
 
     while True:
         print("Your current score is: ", game.score.get_session_score())
+
         pressed_key = game.get_pressed_key()
 
-        if system_helper.pressed_key(pressed_key) == "UP":
-            game.movement_swipe_up()
-
-        elif system_helper.pressed_key(pressed_key) == "DOWN":
-            game.movement_swipe_down()
-        elif system_helper.pressed_key(pressed_key) == "LEFT":
-            game.movement_swipe_left()
-        elif system_helper.pressed_key(pressed_key) == "RIGHT":
-            game.movement_swipe_right()
-        elif system_helper.pressed_key(pressed_key) == "QUIT":
-            quit()
-        else:
-            system_helper.flush_screen()
-            print("Wrong key")
-            game.board.draw_game_board()
+        game.swipe(pressed_key)
 
         if game.game_over():
             print("Game over!")

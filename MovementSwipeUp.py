@@ -9,7 +9,7 @@ class MovementSwipeUp(GameLogic):
     def __init__(self, max_score, size):
         super().__init__(max_score, size)
 
-    def swipe(self):
+    def swipe(self, swipe_direction):
         swiped_up = False
         for y in range(self.board.get_board_length()):
             for x in range(self.board.get_board_length()):
@@ -22,7 +22,7 @@ class MovementSwipeUp(GameLogic):
                 elif element_above is None:
                     continue
 
-                swiped_up = self.move_element(x, y, "UP") or swiped_up
+                swiped_up = self.move_element(x, y, swipe_direction) or swiped_up
 
         if swiped_up:
             self.swipe_current_element()

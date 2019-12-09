@@ -4,24 +4,18 @@ from getch import getch
 
 from GameLogic import GameLogic
 from Movement import Movement
+from SystemHelper import SystemHelper
 
 
 class Game(GameLogic):
 
     def __init__(self, max_score, size):
         super().__init__(max_score, size)
+        self.system_helper = SystemHelper()
 
-    def movement_swipe_up(self):
-        Movement.swipe_up(self)
-
-    def movement_swipe_down(self):
-        Movement.swipe_down(self)
-
-    def movement_swipe_left(self):
-        Movement.swipe_left(self)
-
-    def movement_swipe_right(self):
-        Movement.swipe_right(self)
+    def swipe(self, pressed_key):
+        pressed_key = self.system_helper.pressed_key(pressed_key)
+        Movement.swipe(self, pressed_key)
 
     def game_over(self):
         for y in range(self.board.get_board_length()):
@@ -36,7 +30,7 @@ class Game(GameLogic):
                 if self.board.get_board()[y][x] == str(self.score.get_max_score()):
                     return True
 
-    # todo: fix getch catches length 0
+    # When using arrow keys, reads multiple keystrokes at once
     @staticmethod
     def get_pressed_key():
         return ord(getch())
