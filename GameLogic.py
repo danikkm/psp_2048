@@ -29,7 +29,7 @@ class GameLogic(metaclass=ABCMeta):
 
     @abstractmethod
     def swipe(self, pressed_key):
-        return pressed_key
+        """Swipe interface"""
 
     def move_element(self, x_coordinate, y_coordinate, direction_to_swipe):
         element_at_xy = self.board.get_element(x_coordinate, y_coordinate)
