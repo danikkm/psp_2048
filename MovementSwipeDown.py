@@ -5,9 +5,6 @@ from GameLogic import GameLogic
 
 class MovementSwipeDown(GameLogic):
 
-    def __init__(self, max_score, size):
-        super().__init__(max_score, size)
-
     def swipe(self, swipe_direction):
         swiped_down = False
         for y in range(self.board.get_board_length()):

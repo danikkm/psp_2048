@@ -8,9 +8,6 @@ from MovementSwipeUp import MovementSwipeUp
 
 class Movement:
 
-    def __init__(self):
-        pass
-
     @staticmethod
     def swipe(obj, pressed_key):
         try:
