@@ -1,9 +1,9 @@
-# Main.py
+# main.py
 
 import time
 
-from Game import Game
-from SystemHelper import SystemHelper
+from game import Game
+from system_helper import SystemHelper
 
 
 def main():

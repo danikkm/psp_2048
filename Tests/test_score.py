@@ -1,8 +1,8 @@
-# TestBoard.py
+# test_board.py
 
 import unittest
 
-from Score import Score
+from score import Score
 
 
 class TestBoard(unittest.TestCase):

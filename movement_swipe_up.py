@@ -1,7 +1,7 @@
-# MovementSwipeUp.py
+# movement_swipe_up.py
 
 
-from GameLogic import GameLogic
+from game_logic import GameLogic
 
 
 class MovementSwipeUp(GameLogic):

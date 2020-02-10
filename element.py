@@ -1,4 +1,4 @@
-# Element.py
+# element.py
 
 import random
 

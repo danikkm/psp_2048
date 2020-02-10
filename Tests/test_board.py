@@ -1,8 +1,8 @@
-# TestBoard.py
+# test_board.py
 
 import unittest
 
-from Board import Board
+from board import Board
 
 
 class TestBoard(unittest.TestCase):

@@ -1,10 +1,10 @@
-# Game.py
+# game.py
 
 from getch import getch
 
-from GameLogic import GameLogic
-from Movement import Movement
-from SystemHelper import SystemHelper
+from game_logic import GameLogic
+from movement import Movement
+from system_helper import SystemHelper
 
 
 class Game(GameLogic):
