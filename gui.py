@@ -4,7 +4,7 @@ from tkinter import *
 
 
 class GUI(Frame):
-    def __init__(self, master, size):
+    def __init__(self, master):
         Frame.__init__(self, master)
         self.background_color = {'2': '#EBE1D8', '4': '#ECE0CB', '8': '#F4B177', '16': '#F7975D', '32': '#FA7962',
                                  '64': '#F2613D', '128': '#EBE898', '256': '#F0D068', '512': '#EBE546',
@@ -14,7 +14,7 @@ class GUI(Frame):
                                  '1024': '#FDF5E9', '2048': '#FDF5E9', '4096': '#FDF5E9', '8192': '#FDF5E9'}
         self.grid(sticky=N + S + E + W)
 
-        self.board_size = size
+        self.board_size = 4  # todo: add dynamic initialization
         self.matrix_numbers = []
         self.create_grid(self.board_size)
 

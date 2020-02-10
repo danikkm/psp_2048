@@ -1,9 +1,9 @@
-# board.py
+# Board.py
 
 import termcolor
 
-from board_decorator import BoardDecorator
-from element import Element
+from BoardDecorator import BoardDecorator
+from Element import Element
 from gui_drawer import GUIDrawer
 
 
@@ -14,7 +14,7 @@ class Board:
 
     def __init__(self, size):
         self.element = Element()
-        self.gui_drawer = GUIDrawer(size)
+        self.gui_drawer = GUIDrawer()
         self.gui_drawer.enable_gui()
         self.board_decorator = BoardDecorator()
         self.set_size(size)

@@ -1,9 +1,9 @@
-# movement.py
+# Movement.py
 
-from movement_swipe_down import MovementSwipeDown
-from movement_swipe_left import MovementSwipeLeft
-from movement_swipe_right import MovementSwipeRight
-from movement_swipe_up import MovementSwipeUp
+from MovementSwipeDown import MovementSwipeDown
+from MovementSwipeLeft import MovementSwipeLeft
+from MovementSwipeRight import MovementSwipeRight
+from MovementSwipeUp import MovementSwipeUp
 
 
 class Movement:

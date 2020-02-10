@@ -1,6 +1,6 @@
-# score.py
+# Score.py
 
-from valid_input import ValidInput
+from ValidInput import ValidInput
 
 
 class Score:
