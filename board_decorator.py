@@ -1,4 +1,4 @@
-# BoardDecorator.py
+# board_decorator.py
 
 
 class BoardDecorator:

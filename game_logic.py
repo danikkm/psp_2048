@@ -1,11 +1,11 @@
-# GameLogic.py
+# game_logic.py
 
 import time
 from abc import ABCMeta, abstractmethod
 
-from Board import Board
-from Score import Score
-from SystemHelper import SystemHelper
+from board import Board
+from score import Score
+from system_helper import SystemHelper
 
 
 class GameLogic(metaclass=ABCMeta):

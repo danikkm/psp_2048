@@ -1,6 +1,6 @@
 # psp_2048
 
-2048 written in Python 3
+2048 written in Python 3 with GUI
 
 *Not tested on Windows
 
@@ -8,7 +8,7 @@
 
 ```
 System with Python 3.x onboard
-Installed packages: py-getch, termcolor
+Installed packages: py-getch, termcolor, tkinter
 ```
 
 ### Installing
@@ -16,11 +16,12 @@ Installed packages: py-getch, termcolor
 ```
 pip3 install py-getch
 pip3 install termcolor
+pip3 install tkinter
 ```
 
 ### Quick start guide
 
 ```
 cd "PROJECT_LOCATION"
-python3 Main.py
+python3 main.py
 ```

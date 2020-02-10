@@ -1,4 +1,4 @@
-# ValidInput.py
+# valid_input.py
 
 
 class ValidInput:

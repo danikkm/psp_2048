@@ -7,7 +7,8 @@ from gui import GUI
 
 class GUIDrawer:
 
-    def __init__(self):
+    def __init__(self, size):
+        self.size = size
         try:
             self.gui, self.GUI_runnable, = None, None
         except ImportError:
@@ -17,7 +18,7 @@ class GUIDrawer:
         if self.GUI_runnable is None:
             try:
                 root = Tk()
-                self.gui = GUI(root)
+                self.gui = GUI(root, self.size)
                 self.GUI_runnable = True
 
             except E:

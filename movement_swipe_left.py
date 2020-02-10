@@ -1,27 +1,26 @@
-# MovementSwipeRight.py
+# movement_swipe_left.py
+
+from game_logic import GameLogic
 
 
-from GameLogic import GameLogic
-
-
-class MovementSwipeRight(GameLogic):
+class MovementSwipeLeft(GameLogic):
 
     def swipe(self, swipe_direction):
-        swiped_right = False
+        swiped_left = False
         for y in range(self.board.get_board_length()):
             for x in range(self.board.get_board_length()):
-                x = self.board.get_board_length() - 1 - x
                 element_at_xy = self.board.get_element(x, y)
-                element_on_the_right = self.board.get_element(x + 1, y)
+                element_on_the_left = self.board.get_element(x - 1, y)
 
                 if element_at_xy == self.board.element.get_empty_element():
                     continue
-                elif element_on_the_right is None:
+
+                elif element_on_the_left is None:
                     continue
 
-                swiped_right = self.move_element(x, y, swipe_direction) or swiped_right
+                swiped_left = self.move_element(x, y, swipe_direction) or swiped_left
 
-        if swiped_right:
+        if swiped_left:
             self.swipe_current_element()
         else:
             self.do_nothing()
