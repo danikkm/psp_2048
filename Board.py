@@ -4,6 +4,7 @@ import termcolor
 
 from BoardDecorator import BoardDecorator
 from Element import Element
+from gui_drawer import GUIDrawer
 
 
 class Board:
@@ -13,6 +14,8 @@ class Board:
 
     def __init__(self, size):
         self.element = Element()
+        self.gui_drawer = GUIDrawer()
+        self.gui_drawer.enable_gui()
         self.board_decorator = BoardDecorator()
         self.set_size(size)
         self.__board = self.create_board(size)
@@ -56,6 +59,10 @@ class Board:
             if y is not self.get_board_length() - 1:
                 print("")
         print(vertical_border)
+
+        if self.gui_drawer.is_gui_runnable():
+            self.gui_drawer.get_gui().update_grid(self.get_board())
+            self.gui_drawer.get_gui().update()
 
     def board_is_full(self):
         for row in self.get_board():

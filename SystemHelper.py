@@ -19,6 +19,7 @@ class SystemHelper:
         except NameError:
             print('\n' * 80)
 
+    # TODO: fix wrong getch code
     @staticmethod
     def set_key_strokes():
         return {

@@ -30,7 +30,7 @@ class Game(GameLogic):
                 if self.board.get_board()[y][x] == str(self.score.get_max_score()):
                     return True
 
-    # When using arrow keys, reads multiple keystrokes at once
+    # TODO: When using arrow keys, reads multiple keystrokes at once
     @staticmethod
     def get_pressed_key():
         return ord(getch())
